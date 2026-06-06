@@ -139,8 +139,7 @@ export default function PostIntent() {
 
         <div>
           <label htmlFor="maxFare" className="block text-sm font-medium text-gray-700 mb-1">
-            Max Fare (₹){' '}
-            <span className="text-gray-400 font-normal">(optional)</span>
+            Max Fare (₹) <span className="text-gray-400 font-normal">(optional)</span>
           </label>
           <input
             id="maxFare"

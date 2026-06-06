@@ -2,7 +2,14 @@ const express = require('express');
 const { requireAuth } = require('../../middleware/auth');
 const { rideCreateLimiter } = require('../../middleware/rate-limit');
 const { createRideSchema } = require('./rides.schema');
-const { createRide, getRideById, cancelRide, joinRide, leaveRide, getMyActiveRides } = require('./rides.service');
+const {
+  createRide,
+  getRideById,
+  cancelRide,
+  joinRide,
+  leaveRide,
+  getMyActiveRides,
+} = require('./rides.service');
 
 const router = express.Router();
 

@@ -54,10 +54,7 @@ async function findMatchesForIntent(intent) {
 async function getMatchesForUser(userId) {
   const matches = await prisma.match.findMany({
     where: {
-      OR: [
-        { ride: { posterId: userId } },
-        { intent: { userId: userId } },
-      ],
+      OR: [{ ride: { posterId: userId } }, { intent: { userId: userId } }],
     },
     include: {
       ride: {
@@ -238,4 +235,10 @@ async function rejectMatch(matchId, userId) {
   return { ok: true };
 }
 
-module.exports = { findMatchesForRide, findMatchesForIntent, getMatchesForUser, confirmMatch, rejectMatch };
+module.exports = {
+  findMatchesForRide,
+  findMatchesForIntent,
+  getMatchesForUser,
+  confirmMatch,
+  rejectMatch,
+};
