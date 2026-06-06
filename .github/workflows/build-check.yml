@@ -32,11 +32,13 @@ jobs:
         run: npm run lint --if-present
 
       - name: Validate Prisma Schema
-        # Ensures the database relationships and syntax are correct
+        env:
+          DATABASE_URL: "postgresql://dummy:dummy@localhost:5432/dummy"
         run: npx prisma validate --schema=backend/prisma/schema.prisma
 
       - name: Test Prisma Client Generation
-        # Ensures Prisma can successfully build the client from the schema
+        env:
+          DATABASE_URL: "postgresql://dummy:dummy@localhost:5432/dummy"
         run: npx prisma generate --schema=backend/prisma/schema.prisma
 
       - name: Build Frontend
