@@ -37,10 +37,11 @@ export default function Login() {
           }
         },
       });
-      window.google.accounts.id.renderButton(
-        document.getElementById('google-signin-btn'),
-        { theme: 'outline', size: 'large', width: 280 },
-      );
+      window.google.accounts.id.renderButton(document.getElementById('google-signin-btn'), {
+        theme: 'outline',
+        size: 'large',
+        width: 280,
+      });
     }
 
     if (window.google?.accounts?.id) {
@@ -60,9 +61,7 @@ export default function Login() {
         <p className="text-gray-500 mb-8 text-sm">A better way to share autos out of campus.</p>
 
         {googleError && (
-          <p className="text-red-600 text-sm mb-5 bg-red-50 rounded-md px-3 py-2">
-            {googleError}
-          </p>
+          <p className="text-red-600 text-sm mb-5 bg-red-50 rounded-md px-3 py-2">{googleError}</p>
         )}
 
         {GOOGLE_CLIENT_ID ? (
@@ -71,8 +70,8 @@ export default function Login() {
           </div>
         ) : (
           <p className="text-sm text-gray-400 border border-dashed border-gray-300 rounded-md px-4 py-3">
-            Google sign-in not configured.{' '}
-            <span className="font-mono">VITE_GOOGLE_CLIENT_ID</span> is missing.
+            Google sign-in not configured. <span className="font-mono">VITE_GOOGLE_CLIENT_ID</span>{' '}
+            is missing.
           </p>
         )}
 

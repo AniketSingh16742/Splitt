@@ -162,10 +162,7 @@ export default function PostRide() {
 
         <div>
           <label htmlFor="notes" className="block text-sm font-medium text-gray-700 mb-1">
-            Notes{' '}
-            <span className="text-gray-400 font-normal">
-              (optional, {notes.length}/200)
-            </span>
+            Notes <span className="text-gray-400 font-normal">(optional, {notes.length}/200)</span>
           </label>
           <textarea
             id="notes"

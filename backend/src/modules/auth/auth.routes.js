@@ -46,9 +46,7 @@ router.post('/google/token', async (req, res, next) => {
       return res.status(400).json({ error: 'Missing credential' });
     }
 
-    const infoRes = await fetch(
-      `https://oauth2.googleapis.com/tokeninfo?id_token=${credential}`,
-    );
+    const infoRes = await fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${credential}`);
     const info = await infoRes.json();
 
     if (!infoRes.ok || info.error_description) {
