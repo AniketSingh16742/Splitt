@@ -1,52 +1,67 @@
 # Splitt
 
-A better way to share autos out of campus, built for IIIT Jabalpur students.
+Auto ride-sharing for IIIT Jabalpur students. Split auto fares with batchmates going the same way.
 
-## What it does
+## How it works
 
-Students heading to the same place at the same time shouldn't each pay for a separate auto. Splitt connects them.
+Two students both heading to the railway station at 10am shouldn't each pay ₹80 for a separate auto. Splitt connects them.
 
-**Two flows:**
+1. **Post a ride** — you're booking an auto and have spare seats. Set the destination, departure time, and fare per head.
+2. **Post an intent** — you need a ride but don't have one yet. Set where you want to go and your time window.
+3. **Match** — Splitt automatically finds rides that fit your intent (and intents that fit your ride). Both parties get a real-time notification.
+4. **Confirm** — both sides confirm the match. A seat is reserved atomically.
+5. **Connect** — once both confirm, each other's WhatsApp number is revealed.
 
-- **Post a ride** — you're booking an auto and have spare seats. Set the destination, time, and fare per head. Splitt finds students looking for a ride that matches yours.
-- **Post an intent** — you need a ride but don't have one yet. Set where you want to go and your time window. Splitt finds existing rides that fit.
+Only `@iiitdmj.ac.in` Google accounts can sign in.
 
-When a ride and an intent match, both the poster and the seeker get notified in real time. Both sides confirm, a seat is reserved, and WhatsApp contact details are revealed. Only `@iiitdmj.ac.in` Google accounts can sign in.
+## Stack
 
-## Tech stack
-
-React 18 · Vite · TailwindCSS · TanStack Query · Express · Prisma · PostgreSQL · Server-Sent Events
+|           |                                                                      |
+| --------- | -------------------------------------------------------------------- |
+| Frontend  | React 18, Vite, TailwindCSS, TanStack Query, React Router v6         |
+| Backend   | Node.js 20, Express, Prisma, PostgreSQL                              |
+| Real-time | Server-Sent Events                                                   |
+| Auth      | Google Identity Services (ID token flow — no client secret needed)   |
+| Infra     | Docker (local), Render (backend), Vercel (frontend), Neon (database) |
 
 ## Getting started
 
-See **[docs/SETUP.md](docs/SETUP.md)** for the full setup guide.
-
-Short version:
+**Prerequisites:** Node.js 20+, Docker Desktop
 
 ```bash
+# Install all workspace dependencies
 npm install
+
+# Start Postgres
 docker compose up -d
+
+# Copy env files and fill in values
 cp backend/.env.example backend/.env
 cp frontend/.env.example frontend/.env
+
+# Run migrations and seed dev users
 npm --workspace backend run prisma:migrate
 npm --workspace backend run db:seed
-npm run dev:backend   # localhost:3000
-npm run dev:frontend  # localhost:5173
+
+# Start backend (:3000) and frontend (:5173)
+npm run dev:backend
+npm run dev:frontend
 ```
 
-Open http://localhost:5173, click **Dev Login**, and you're in.
+Open [http://localhost:5173](http://localhost:5173), click **Dev Login**, and you're in.
+
+For Google OAuth setup and the full command reference see [docs/SETUP.md](docs/SETUP.md).
 
 ## Contributing
 
-Read **[docs/CONTRIBUTING.md](docs/CONTRIBUTING.md)** before opening a PR.
-The backlog of open issues is in **[CLEANUP.md](CLEANUP.md)**.
+Read [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) before opening a PR.
+Open issues are tracked in [CLEANUP.md](CLEANUP.md) — pick one and claim it.
 
 ## Docs
 
-| File | What's in it |
-|---|---|
-| [docs/SETUP.md](docs/SETUP.md) | Local setup, Google OAuth config, useful commands |
-| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | How the backend works — matching, SSE, confirmation flow |
-| [docs/DATA_SHAPES.md](docs/DATA_SHAPES.md) | Every API endpoint with example request/response |
-| [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) | Branch naming, commit format, PR process |
-| [CLEANUP.md](CLEANUP.md) | Features not yet built — pick one and open an issue |
+|                                              |                                                                  |
+| -------------------------------------------- | ---------------------------------------------------------------- |
+| [docs/SETUP.md](docs/SETUP.md)               | Local setup, Google OAuth config, all dev commands               |
+| [docs/DATA_SHAPES.md](docs/DATA_SHAPES.md)   | Every API endpoint with request and response examples            |
+| [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) | Branch naming, commit format, PR process                         |
+| [CLEANUP.md](CLEANUP.md)                     | Features not yet built — good place to find something to work on |
