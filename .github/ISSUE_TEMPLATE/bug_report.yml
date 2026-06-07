@@ -1,0 +1,72 @@
+name: 🐛 Bug report
+description: Report a reproducible bug so we can fix it.
+title: "[BUG] "
+labels: ["bug"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report an issue! Please fill in as much detail as you can.
+
+  - id: browser
+    type: dropdown
+    attributes:
+      label: Browser
+      options:
+        - Chrome
+        - Firefox
+        - Safari
+        - Edge
+        - Other
+    validations:
+      required: true
+
+  - id: area
+    type: dropdown
+    attributes:
+      label: Area
+      description: Which part of the app is affected?
+      options:
+        - Auth (login / Google sign-in)
+        - Post Ride
+        - Post Intent
+        - Matching
+        - Confirm / Reject match
+        - Real-time notifications (SSE)
+        - Ratings
+        - Other
+    validations:
+      required: true
+
+  - id: steps
+    type: textarea
+    attributes:
+      label: Steps to reproduce
+      description: Describe step-by-step how to trigger the bug.
+      placeholder: |
+        1. Go to ...
+        2. Click on ...
+        3. See error
+    validations:
+      required: true
+
+  - id: expected
+    type: textarea
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - id: actual
+    type: textarea
+    attributes:
+      label: What actually happened
+    validations:
+      required: true
+
+  - id: logs
+    type: textarea
+    attributes:
+      label: Logs / Screenshots
+      description: Paste browser console output or screenshots if available.
